@@ -4,6 +4,8 @@
 [![Coverage Status][coveralls-image]][coveralls-url]
 [![License: MIT][license-image]][license-url]
 
+Thanks [@obernardovieira](https://github.com/obernardovieira) for great [guide](https://forum.openzeppelin.com/t/test-smart-contracts-like-a-rockstar/1001)
+
 ### Usage
 
 ```sh
