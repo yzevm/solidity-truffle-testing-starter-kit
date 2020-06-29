@@ -7,8 +7,8 @@
     "test": "HOST=localhost PORT=7545 truffle test",
     "test:gasless": "concurrently --kill-others \"npm run ganache\" \"HOST=localhost PORT=7545 truffle test --network=development\"",
     "ganache": "ganache-cli --port=7545 --gasLimit=0x1fffffffffffff --allowUnlimitedContractSize -e 1000000000 --gasPrice=1",
-    "coverage": "HOST=localhost PORT=7545 truffle run coverage --file='./test/**/*.test.js'",
-    "coverage-report": "HOST=localhost PORT=7545 truffle run coverage && cat coverage/lcov.info | coveralls"
+    "coverage": "HOST=localhost PORT=7545 truffle run coverage --network=coverage --file='./test/**/*.test.js'",
+    "coverage-report": "HOST=localhost PORT=7545 truffle run coverage --network=coverage --file='./test/**/*.test.js' && cat coverage/lcov.info | coveralls"
   },
   "keywords": [],
   "author": "",
