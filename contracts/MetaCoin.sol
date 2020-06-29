@@ -1,7 +1,6 @@
 pragma solidity >=0.4.25 <0.7.0;
 
-import "./ConvertLib.sol";
-
+import "./SafeMath.sol";
 
 // This is just a simple example of a coin-like contract.
 // It is not standards compatible and cannot be expected to talk to other
@@ -9,12 +8,16 @@ import "./ConvertLib.sol";
 // token, see: https://github.com/ConsenSys/Tokens. Cheers!
 
 contract MetaCoin {
-    mapping(address => uint256) balances;
+    using SafeMath for uint256;
+
+    mapping(address => uint256) private balances;
+    uint256 private createdAt;
 
     event Transfer(address indexed _from, address indexed _to, uint256 _value);
 
     constructor() public {
         balances[msg.sender] = 10000;
+        createdAt = now;
     }
 
     function sendCoin(address receiver, uint256 amount)
@@ -29,10 +32,18 @@ contract MetaCoin {
     }
 
     function getBalanceInEth(address addr) public view returns (uint256) {
-        return ConvertLib.convert(getBalance(addr), 2);
+        return getBalance(addr).mul(2);
     }
 
     function getBalance(address addr) public view returns (uint256) {
         return balances[addr];
+    }
+
+    function isDayPassed() public view returns (bool) {
+        if (createdAt.add(1 days) > now) {
+            return false;
+        }
+
+        return true;
     }
 }
